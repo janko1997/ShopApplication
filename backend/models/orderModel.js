@@ -27,7 +27,7 @@ const orderSchema = mongoose.Schema(
       country: { type: String, required: true },
     },
     paymentMethod: {
-      type: StaticRange,
+      type: String,
       required: true,
     },
     paymentResult: {
@@ -73,6 +73,6 @@ const orderSchema = mongoose.Schema(
   }
 );
 
-const Order = mongoose.model('Order', orederSchema);
+const Order = mongoose.model('Order', orderSchema);
 
 export default Order;
