@@ -1,26 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-  ListGroupItem,
-  Form,
-} from 'react-bootstrap'
+import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listProductDetails } from '../actions/productActions'
 
 const ProductScreen = ({ history, match }) => {
-  const [qty, setQty] = useState(0)
+  const [qty, setQty] = useState(1)
   const dispatch = useDispatch()
 
-  const productDetails = useSelector((state) => state.productDetails)
+  const productDetails = useSelector(state => state.productDetails)
   const { loading, error, product } = productDetails
 
   useEffect(() => {
@@ -52,16 +43,11 @@ const ProductScreen = ({ history, match }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 {product.rating && (
-                  <Rating
-                    value={product.rating}
-                    text={`${product.numReviews} reviews`}
-                  />
+                  <Rating value={product.rating} text={`${product.numReviews} reviews`} />
                 )}
               </ListGroup.Item>
               <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
-              <ListGroup.Item>
-                Description: {product.description}
-              </ListGroup.Item>
+              <ListGroup.Item>Description: {product.description}</ListGroup.Item>
             </ListGroup>
           </Col>
           <Col md={3}>
@@ -79,9 +65,7 @@ const ProductScreen = ({ history, match }) => {
                 <ListGroup.Item>
                   <Row>
                     <Col>Status:</Col>
-                    <Col>
-                      {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
-                    </Col>
+                    <Col>{product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}</Col>
                   </Row>
                 </ListGroup.Item>
 
@@ -93,9 +77,9 @@ const ProductScreen = ({ history, match }) => {
                         <Form.Control
                           as='select'
                           value={qty}
-                          onChange={(e) => setQty(e.target.value)}
+                          onChange={e => setQty(e.target.value)}
                         >
-                          {[...Array(product.countInStock).keys()].map((x) => (
+                          {[...Array(product.countInStock).keys()].map(x => (
                             <option key={x + 1} value={x + 1}>
                               {x + 1}
                             </option>
