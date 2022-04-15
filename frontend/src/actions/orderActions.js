@@ -83,7 +83,7 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
     const {
       userLogin: { userInfo },
     } = getState()
-
+    debugger
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
       },
     }
 
-    const { data } = await axios.put(`/api/orders/${orderId}/pay`, config)
+    const { data } = await axios.put(`/api/orders/${orderId}/pay`, paymentResult, config)
 
     dispatch({
       type: ORDER_PAY_SUCCESS,
