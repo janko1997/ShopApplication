@@ -86,7 +86,7 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
     const {
       userLogin: { userInfo },
     } = getState()
-    debugger
+
     const config = {
       headers: {
         'Content-Type': 'application/json',
